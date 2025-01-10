@@ -8,5 +8,6 @@ package playWrightAutomation.playWrightAutomation;
 public class AppTest
 {
     {
+
     }
 }

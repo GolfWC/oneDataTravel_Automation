@@ -11,9 +11,7 @@ public class App
         System.out.println( "Hello World! Test"  );
         System.out.println( "Hello World! Test"  );
 
-        System.out.println( "Hello World! Test new branch"  );
-        System.out.println( "Hello World! Test new branch"  );
-        System.out.println( "Hello World! Test new branch"  );
+
 
     }
 }
