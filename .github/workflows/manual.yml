@@ -57,4 +57,4 @@ jobs:
         cp -r target/cucumber-reports/* .
         git add .
         git commit -m 'Deploy test report'
-        git push --force "https://${GITHUB_TOKEN}/GolfWC/oneDataTravel_Automation.git" gh-pages     
+        git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/GolfWC/oneDataTravel_Automation.git" gh-pages   
