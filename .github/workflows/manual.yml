@@ -9,7 +9,7 @@ on:
  #     - main
 jobs:
  test:
-   runs-on: ubuntu-latest
+   runs-on: windows-latest
    steps:
    # Checkout the repository
    - name: Checkout Code
