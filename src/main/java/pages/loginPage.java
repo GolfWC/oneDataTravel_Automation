@@ -4,11 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+
 public class loginPage {
 
-    private WebDriver driver;
+//    private WebDriver driver;
 
-
+    WebDriver driver ;
     public loginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
