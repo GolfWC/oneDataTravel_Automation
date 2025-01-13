@@ -45,6 +45,8 @@ jobs:
     # Commit and push test reports to gh-pages branch
    - name: Deploy to GitHub Pages
      if: always()
+     env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -53,4 +55,4 @@ jobs:
         cp -r target/cucumber-reports/* .
         git add .
         git commit -m 'Deploy test report'
-        git push --force origin gh-pages     
+        git push --force "https://${GITHUB_TOKEN}@github.com/GolfWC/oneDataTravel_Automation.git" gh-pages     
