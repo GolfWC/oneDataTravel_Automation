@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Test Suite" verbose="2" parallel="classes" thread-count="3">
+    <test name=" Logging Page Test">
+        <classes>
+            <class name="runner.TestRunner"/>
+        </classes>
+    </test>
+</suite>
