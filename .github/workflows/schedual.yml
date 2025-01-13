@@ -5,15 +5,39 @@ on:
   schedule:
    # - cron: '0 0 * * *'
    # - cron: '*/5 * * * *'
+    - cron: '0 8 * * *'
 
 jobs:
-  # This workflow contains a single job called "greet"
-  greet:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+ test:
+   runs-on: windows-latest
+   steps:
+   # Checkout the repository
+   - name: Checkout Code
+     uses: actions/checkout@v3
+   # Set up Java
+   - name: Set up JDK
+     uses: actions/setup-java@v3
+     with:
+       distribution: 'temurin'
+       java-version: '11' # Update to your required Java version
+   # Cache Maven dependencies
+   - name: Cache Maven dependencies
+     uses: actions/cache@v3
+     with:
+       path: ~/.m2/repository
+       key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+       restore-keys: |
+         ${{ runner.os }}-maven-
+   # Install Maven dependencies
+   - name: Install Maven dependencies
+     run: mvn clean install -DskipTests=true
+   # Run Cucumber tests
+   - name: Run Tests
+     run: mvn test
+   # Upload test reports as artifacts
+   - name: Upload Test Reports
+     if: always() # Always upload reports even if tests fail
+     uses: actions/upload-artifact@v3
+     with:
+       name: test-reports
+       path: target/cucumber-reports # Adjust to your report location
