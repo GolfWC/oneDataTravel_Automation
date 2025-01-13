@@ -43,7 +43,7 @@ jobs:
        path: target/cucumber-reports # Adjust to your report location
 
    - name: Display GitHub Token
-     run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}"
+     run: echo "GITHUB_TOKEN=${{ secrets.TOKEN_GITHUB }}"
     # Commit and push test reports to gh-pages branch
    - name: Deploy to GitHub Pages
    
