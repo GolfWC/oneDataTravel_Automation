@@ -7,20 +7,27 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class Hook {
-    WebDriver driver;
+    private static WebDriver driver;
 
+    @Before
+    public void setUp() {
+        System.out.println("Initializing the browser...");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, java.util.concurrent.TimeUnit.SECONDS);
 
-//    @Before
-//    public void setUp() {
-//        System.out.println("Lunch the browser");
-//        driver = new ChromeDriver();
-//        driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(10, java.util.concurrent.TimeUnit.SECONDS);
-//        driver.get("https://google.com");
-//    }
-//
-//    @After
-//    public void tearDown() {
-//        driver.quit();
-//    }
+    }
+
+    @After
+    public void tearDown() {
+        System.out.println("Closing the browser...");
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
 }
