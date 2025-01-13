@@ -42,21 +42,21 @@ jobs:
        name: test-reports
        path: target/cucumber-reports # Adjust to your report location
 
-   - name: Display GitHub Token
-     run: echo "GITHUB_TOKEN=${{ secrets.TOKEN_GITHUB }}"
-    # Commit and push test reports to gh-pages branch
-   - name: Deploy to GitHub Pages
+   # - name: Display GitHub Token
+   #   run: echo "GITHUB_TOKEN=${{ secrets.TOKEN_GITHUB }}"
+   #  # Commit and push test reports to gh-pages branch
+   # - name: Deploy to GitHub Pages
    
-     if: always()
-     env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+   #   if: always()
+   #   env:
+   #      GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
         
-     run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git checkout --orphan gh-pages
-        git reset --hard
-        cp -r target/cucumber-reports/* .
-        git add .
-        git commit -m 'Deploy test report'
-        git push --force "https://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@github.com/GolfWC/oneDataTravel_Automation.git" gh-pages     
+   #   run: |
+   #      git config --global user.name 'github-actions[bot]'
+   #      git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+   #      git checkout --orphan gh-pages
+   #      git reset --hard
+   #      cp -r target/cucumber-reports/* .
+   #      git add .
+   #      git commit -m 'Deploy test report'
+   #      git push --force "https://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@github.com/GolfWC/oneDataTravel_Automation.git" gh-pages     
