@@ -11,4 +11,9 @@ Need to go throught
 - VS code
 - Destop automation frameworke
 - Screen extendsion management
+
+------------------------------------------------------------------
+
+ChromeDriver Kill Task
+Taskkill /IM chromedriver.exe /F
   
