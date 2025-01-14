@@ -11,4 +11,26 @@ Need to go throught
 - VS code
 - Destop automation frameworke
 - Screen extendsion management
-  
+
+------------------------------------------------------------------
+
+ChromeDriver Kill Task
+Taskkill /IM chromedriver.exe /F
+
+-------------------------------------------------------------------
+Path for WinAppDriver.exe
+"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe" 
+
+--------------------------------------------------------------------
+Dependency Neeeded
+<!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+<dependency>
+    <groupId>io.appium</groupId>
+    <artifactId>java-client</artifactId>
+    <version>9.3.0</version>
+</dependency>
+
+----------------------------------------------------------------------
+Create Maven Project 
+Use -> Quick Start Project
+
