@@ -16,4 +16,7 @@ Need to go throught
 
 ChromeDriver Kill Task
 Taskkill /IM chromedriver.exe /F
-  
+
+-------------------------------------------------------------------
+Path for WinAppDriver.exe
+"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe" 
