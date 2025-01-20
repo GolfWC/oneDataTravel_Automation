@@ -7,7 +7,7 @@ Feature: login Feature Demo
       Then I should be logged in
 
 
-  @login
+@login
   Scenario: Login with Invalid credentials
     Given I am on the login page
     When I enter my username and password
