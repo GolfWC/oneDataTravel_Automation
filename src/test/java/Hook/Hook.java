@@ -23,6 +23,7 @@ public class Hook {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, java.util.concurrent.TimeUnit.SECONDS);
 
+
     }
 
     @After
