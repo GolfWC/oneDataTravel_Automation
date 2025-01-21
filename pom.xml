@@ -18,11 +18,7 @@
   </properties>
 
   <dependencies>
-    <!--    <dependency>-->
-    <!--      <groupId>com.microsoft.playwright</groupId>-->
-    <!--      <artifactId>playwright</artifactId>-->
-    <!--      <version>1.49.0</version>-->
-    <!--    </dependency>-->
+
 
     <dependency>
       <groupId>org.testng</groupId>
@@ -52,6 +48,25 @@
   </dependencies>
   <build>
     <plugins>
+          <plugin>
+            <groupId>net.masterthought</groupId>
+            <artifactId>maven-cucumber-reporting</artifactId>
+            <version>2.8.0</version>
+            <executions>
+              <execution>
+                <id>execution</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+                <configuration>
+                  <projectName>oneDataTravel_Automation</projectName>
+                  <outputDirectory>${project.build.directory}/cucumber-report-html</outputDirectory>
+                  <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -73,5 +88,13 @@
         </configuration>
       </plugin>
     </plugins>
+    <resources>
+      <resource>
+        <directory>src/test/resources</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+    </resources>
   </build>
 </project>

@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import java.awt.*;
+
 
 public class loginPage {
 
@@ -24,6 +26,7 @@ public class loginPage {
     }
 
     public void enterPassword(String password) {
+
 
     }
 
