@@ -57,4 +57,5 @@ mvn command to run the test
 mvn verify -DskipTests
 
 --------------------------------------------------------------
-
+Integrate with Jenkins
+Integrate with SourceLab 
