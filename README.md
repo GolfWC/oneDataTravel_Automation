@@ -58,4 +58,8 @@ mvn verify -DskipTests
 
 --------------------------------------------------------------
 Integrate with Jenkins
-Integrate with SourceLab 
+Integrate with SourceLab
+--------------------------------------------------------------
+```
+mvn test -DrunEnv=sauceLabs
+```

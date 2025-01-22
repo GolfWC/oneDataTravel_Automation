@@ -18,7 +18,7 @@ public class loginPage {
     }
 
     private By username = By.id("eliloUserID");
-    private By password = By.id("password");
+    private By password = By.id("pasword");
     private By loginButton = By.id("login");
 
     public void enterUsername(String name) {
@@ -26,7 +26,7 @@ public class loginPage {
     }
 
     public void enterPassword(String password) {
-
+        driver.findElement(this.password).sendKeys(password);
 
     }
 
