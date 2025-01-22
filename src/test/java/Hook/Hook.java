@@ -32,7 +32,7 @@ public class Hook {
     @Before
     public void setUp() throws MalformedURLException, IOException {
         System.out.println("Initializing the browser...");
-        String runEnv = "Local";
+        String runEnv = "sauceLabs";
            //     "sauceLabs";
         String propertiesFile = "src/test/resources/" + runEnv + ".properties";
         properties.load(new FileInputStream(propertiesFile));
