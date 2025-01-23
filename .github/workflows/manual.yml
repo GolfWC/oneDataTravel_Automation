@@ -37,7 +37,7 @@ jobs:
    # Upload test reports as artifacts
    - name: Upload Test Reports
      if: always() # Always upload reports even if tests fail
-     uses: actions/upload-artifact@v3
+     uses: actions/upload-artifact@v4
      with:
        name: test-reports
        path: target/cucumber-reports # Adjust to your report location
