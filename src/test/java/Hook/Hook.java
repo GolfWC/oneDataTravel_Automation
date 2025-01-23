@@ -36,7 +36,7 @@ public class Hook {
         String propertiesFile = "src/test/resources/" + "environment.properties";
         properties.load(new FileInputStream(propertiesFile));
 
-        if ("sauceLabs".equalsIgnoreCase(properties.getProperty("runEnv"))) {
+        if (properties.getProperty("runEnv").equalsIgnoreCase("remote")) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("browserName", properties.getProperty("browser"));
             capabilities.setCapability("platformName", properties.getProperty("platform"));
