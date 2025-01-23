@@ -13,7 +13,7 @@ jobs:
    steps:
    # Checkout the repository
    - name: Checkout Code
-     uses: actions/checkout@v4
+     uses: actions/checkout@v3
    # Set up Java
    - name: Set up JDK
      uses: actions/setup-java@v3
@@ -37,7 +37,7 @@ jobs:
    # Upload test reports as artifacts
    - name: Upload Test Reports
      if: always() # Always upload reports even if tests fail
-     uses: actions/upload-artifact@v3
+     uses: actions/upload-artifact@v4
      with:
        name: test-reports
        path: target/cucumber-reports # Adjust to your report location
