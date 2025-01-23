@@ -32,12 +32,11 @@ public class Hook {
     @Before
     public void setUp() throws MalformedURLException, IOException {
         System.out.println("Initializing the browser...");
-        String runEnv = "sauceLabs";
-           //     "sauceLabs";
-        String propertiesFile = "src/test/resources/" + runEnv + ".properties";
+
+        String propertiesFile = "src/test/resources/" + "environment.properties";
         properties.load(new FileInputStream(propertiesFile));
 
-        if ("sauceLabs".equalsIgnoreCase(runEnv)) {
+        if ("sauceLabs".equalsIgnoreCase(properties.getProperty("runEnv"))) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("browserName", properties.getProperty("browser"));
             capabilities.setCapability("platformName", properties.getProperty("platform"));
