@@ -42,6 +42,9 @@ jobs:
        name: test-reports
        path: target/cucumber-reports # Adjust to your report location
 
+   - name: Generate Cucumber Report
+     run: mvn verify   
+
    - name: Send Slack notification
      if: always()
      uses: slackapi/slack-github-action@v1.23.0
