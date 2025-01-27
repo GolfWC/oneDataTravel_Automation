@@ -20,12 +20,13 @@ public class loginStep {
     @Given("I am on the login page")
     public void i_am_on_the_login_page() {
 
-        driver.get("https://www.americanexpress.com/en-us/account/login/");
+    //    driver.get("https://www.americanexpress.com/en-us/account/login/");
+        driver.get("https://github.com/GolfWC/WinAppDriverAutomationPOC");
 
     }
     @When("I enter my username and password")
     public void i_enter_my_username_and_password() {
-        loginPage.enterUsername("Golf Wuttikrai");
+    //    loginPage.enterUsername("Golf Wuttikrai");
 
     }
     @Then("I should be logged in")
