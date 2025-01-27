@@ -26,7 +26,7 @@ public class loginStep {
     }
     @When("I enter my username and password")
     public void i_enter_my_username_and_password() {
-    //    loginPage.enterUsername("Golf Wuttikrai");
+        loginPage.enterUsername("Golf Wuttikrai");
 
     }
     @Then("I should be logged in")
