@@ -51,8 +51,71 @@ Add Dependencies: Add the necessary dependencies to your pom.xml file for making
     <version>2.12.3</version>
     </dependency>
 ```
+1. Create a Jira Client: Create a utility class to handle Jira API requests.
+2. Update Hook Class: Modify the Hook class to create test cases and test results in Jira.
+```
+   
+    JiraClient jiraClient;
 
+    @Before
+    public void setUp() throws MalformedURLException, IOException {
+        System.out.println("Initializing the browser...");
 
+        String propertiesFile = "src/test/resources/" + "environment.properties";
+        properties.load(new FileInputStream(propertiesFile));
+
+        jiraClient = new JiraClient(
+                properties.getProperty("jira.url"),
+                properties.getProperty("jira.username"),
+                properties.getProperty("jira.apiToken")
+        );
+
+        if (properties.getProperty("runEnv").equalsIgnoreCase("remote")) {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("browserName", properties.getProperty("browser"));
+            capabilities.setCapability("platformName", properties.getProperty("platform"));
+            capabilities.setCapability("browserVersion", "latest");
+            capabilities.setCapability("sauce:options", new HashMap<String, Object>());
+
+            driver = new RemoteWebDriver(new URL(properties.getProperty("sauce.url")), capabilities);
+        } else {
+            driver = new ChromeDriver();
+        }
+
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, java.util.concurrent.TimeUnit.SECONDS);
+    }
+
+    
+    @After
+    public void tearDown(Scenario scenario) throws IOException {
+        System.out.println("Closing the browser...");
+        if (driver != null) {
+            String sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
+            SauceREST sauceREST = new SauceREST(properties.getProperty("sauce.username"), properties.getProperty("sauce.accessKey"), DataCenter.US_WEST);
+            scenario.log("Sauce Labs Video: https://app.saucelabs.com/tests/" + sessionId);
+
+            // Create test case and result in Jira
+            String projectKey = properties.getProperty("jira.projectKey");
+            String summary = scenario.getName();
+            String description = "Test executed with Sauce Labs. Session ID: " + sessionId;
+            jiraClient.createTestCase(projectKey, summary, description);
+            jiraClient.createTestResult(summary, scenario.isFailed() ? "fail" : "pass");
+
+            driver.quit();
+        }
+    }
+
+}
+```
+3. Update Properties File: Add Jira configuration to your environment.properties file.
+
+```
+jira.url=https://your-jira-instance.atlassian.net
+jira.username=your-jira-username
+jira.apiToken=your-jira-api-token
+jira.projectKey=your-project-key
+```
 
 
 
