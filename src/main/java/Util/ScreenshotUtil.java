@@ -20,4 +20,28 @@ public class ScreenshotUtil {
             e.printStackTrace();
         }
     }
+
+    public static void takeScreenshot(WebDriver driver) {
+        takeScreenshot(driver, "screenshot");
+    }
+
+    public static void takeScreenshot(WebDriver driver, String screenshotName, String timestamp) {
+        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileHandler.copy(srcFile, new File("screenshots/" + screenshotName + "_" + timestamp + ".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void takeScreenshot(WebDriver driver, String screenshotName, String timestamp, String path) {
+        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileHandler.copy(srcFile, new File(path + screenshotName + "_" + timestamp + ".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
