@@ -9,36 +9,36 @@ on:
    # - cron: '0 0 * * 1'  # This cron expression schedules the job to run every Monday at 00:00 UTC
 
 jobs:
- test:
-   runs-on: windows-latest
-   steps:
-   # Checkout the repository
-   - name: Checkout Code
-     uses: actions/checkout@v3
-   # Set up Java
-   - name: Set up JDK
-     uses: actions/setup-java@v3
-     with:
-       distribution: 'temurin'
-       java-version: '11' # Update to your required Java version
-   # Cache Maven dependencies
-   - name: Cache Maven dependencies
-     uses: actions/cache@v3
-     with:
-       path: ~/.m2/repository
-       key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-       restore-keys: |
-         ${{ runner.os }}-maven-
-   # Install Maven dependencies
-   - name: Install Maven dependencies
-     run: mvn clean install -DskipTests=true
-   # Run Cucumber tests
-   - name: Run Tests
-     run: mvn test
-   # Upload test reports as artifacts
-   - name: Upload Test Reports
-     if: always() # Always upload reports even if tests fail
-     uses: actions/upload-artifact@v4
-     with:
-       name: test-reports
-       path: target/cucumber-reports # Adjust to your report location
+  test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '11'
+        
+    - name: Cache Maven dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ hashFiles('**/src/**') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+          
+    - name: Install Maven dependencies
+      run: mvn clean install -DskipTests=true
+      
+    - name: Run Tests
+      run: mvn test
+      
+    - name: Upload Test Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports
+        path: target/cucumber-reports
