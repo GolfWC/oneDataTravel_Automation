@@ -83,11 +83,5 @@ public class DatabaseUtils {
         }
     }
 
-    public static void main(String[] args) {
-        DatabaseUtils dbUtils = new DatabaseUtils();
-        String query = "SELECT id, name FROM employees";
-        dbUtils.readData(query);
-    }
-
 
 }
