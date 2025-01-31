@@ -4,7 +4,9 @@ pipeline {
     environment {
         MAVEN_HOME = tool 'Maven'
         JAVA_HOME = tool 'JDK'
+
     }
+
 
     stages {
         stage('Checkout') {
@@ -26,6 +28,8 @@ pipeline {
                 // Run the tests
                 sh "${MAVEN_HOME}/bin/mvn test"
             }
+
+
         }
 
         stage('Post Actions') {
@@ -35,8 +39,10 @@ pipeline {
                 // Archive the screenshots
                 archiveArtifacts artifacts: 'screenshots/*.png', allowEmptyArchive: true
             }
+
         }
     }
+
 
     post {
         always {
