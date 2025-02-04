@@ -64,6 +64,7 @@
     </dependency>
 
 <!--    <dependency for Jira Integration>-->
+
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
