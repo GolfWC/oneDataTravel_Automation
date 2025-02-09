@@ -30,8 +30,7 @@ public class loginPage {
 
     }
 
-    public void clickLoginButton() {
 
-    }
+
 
 }
