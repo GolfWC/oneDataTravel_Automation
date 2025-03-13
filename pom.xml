@@ -51,11 +51,6 @@
       <version>1.5.0</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.saucelabs</groupId>
-      <artifactId>saucerest</artifactId>
-      <version>1.0.36</version>
-    </dependency>
     <!-- https://mvnrepository.com/artifact/com.saucelabs/saucerest -->
     <dependency>
       <groupId>com.saucelabs</groupId>
@@ -120,6 +115,12 @@
           <target>11</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>3.9.1.2184</version>
+      </plugin>
+
     </plugins>
     <resources>
       <resource>
