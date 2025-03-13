@@ -1,4 +1,4 @@
-name: Selenium Cucumber TestNG Workflow
+name: SonarQube Workflow
 
 on:
   workflow_dispatch:
