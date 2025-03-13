@@ -38,6 +38,12 @@ jobs:
     - name: Install Maven dependencies
       run: mvn clean install -DskipTests=true
 
+     # Run SonarQube analysis
+    - name: Run SonarQube analysis
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: mvn sonar:sonar -Dsonar.projectKey=golfSonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=${{ secrets.SONAR_TOKEN }}  
+
     # Run Cucumber tests
     - name: Run Tests
       run: mvn test
@@ -54,11 +60,7 @@ jobs:
     - name: Generate Cucumber Report
       run: mvn verify
 
-    # Run SonarQube analysis
-    - name: Run SonarQube analysis
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: mvn sonar:sonar -Dsonar.projectKey=golfSonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+   
 
     # Send Slack notification
     - name: Send Slack notification
