@@ -1,0 +1,97 @@
+name: SonarQube Workflow
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
+  # pull_request:
+  #   branches:
+  #     - main
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+    # Checkout the repository
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # Set up Java
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '11' # Update to your required Java version
+
+    # Cache Maven dependencies
+    - name: Cache Maven dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+
+    # Install Maven dependencies
+    - name: Install Maven dependencies
+      run: mvn clean install -DskipTests=true
+
+     # Run SonarQube analysis
+    - name: Run SonarQube analysis
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: mvn sonar:sonar -Dsonar.projectKey=golfSonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=${{ secrets.SONAR_TOKEN }}  
+
+    # Run Cucumber tests
+    - name: Run Tests
+      run: mvn test
+
+    # Upload test reports as artifacts
+    - name: Upload Test Reports
+      if: always() # Always upload reports even if tests fail
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports
+        path: target/cucumber-reports # Adjust to your report location
+
+    # Generate Cucumber Report
+    - name: Generate Cucumber Report
+      run: mvn verify
+
+   
+
+    # Send Slack notification
+    - name: Send Slack notification
+      if: always()
+      uses: slackapi/slack-github-action@v1.23.0
+      with:
+        payload: |
+          {
+            "text": "GitHub Action run completed. Status: ${{ job.status }}",
+            "attachments": [
+              {
+                "color": "${{ job.status == 'success' && 'good' || 'danger' }}",
+                "fields": [
+                  {
+                    "title": "Repository",
+                    "value": "${{ github.repository }}",
+                    "short": true
+                  },
+                  {
+                    "title": "Branch",
+                    "value": "${{ github.ref }}",
+                    "short": true
+                  },
+                  {
+                    "title": "Commit",
+                    "value": "${{ github.sha }}",
+                    "short": true
+                  }
+                ]
+              }
+            ]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

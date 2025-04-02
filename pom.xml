@@ -51,11 +51,6 @@
       <version>1.5.0</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.saucelabs</groupId>
-      <artifactId>saucerest</artifactId>
-      <version>1.0.36</version>
-    </dependency>
     <!-- https://mvnrepository.com/artifact/com.saucelabs/saucerest -->
     <dependency>
       <groupId>com.saucelabs</groupId>
@@ -111,15 +106,30 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.10.1</version>
-        <!-- References to interface static methods are allowed only at source level 1.8 or above -->
-        <configuration>
-          <source>11</source>
-          <target>11</target>
-        </configuration>
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-compiler-plugin</artifactId>-->
+<!--        <version>3.10.1</version>-->
+<!--        &lt;!&ndash; References to interface static methods are allowed only at source level 1.8 or above &ndash;&gt;-->
+<!--        <configuration>-->
+<!--          <source>11</source>-->
+<!--          <target>11</target>-->
+<!--        </configuration>-->
+
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version> <!-- Ensure the version is specified -->
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+          </configuration>
+
       </plugin>
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>3.9.1.2184</version>
+      </plugin>
+
     </plugins>
     <resources>
       <resource>
