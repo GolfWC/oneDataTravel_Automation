@@ -1,6 +1,5 @@
 package pages;
 
-import Util.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -8,23 +7,21 @@ import org.openqa.selenium.support.PageFactory;
 import java.awt.*;
 
 
-public class loginPage extends  BaseClass {
+public class loginPage {
 
 //    private WebDriver driver;
 
     WebDriver driver ;
     public loginPage(WebDriver driver) {
-        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    private By username = By.xpath("//*[@id=\"loginControl\"]/div[3]/input");
-    private By password = By.xpath("//*[@id=\"loginControl\"]/div[5]/input");
-    private By loginButton = By.xpath("//*[@id=\"loginControl\"]/div[9]/button");
+    private By username = By.id("eliloUserID");
+    private By password = By.id("pasword");
+    private By loginButton = By.id("login");
 
-    public void enterUsername(String name) throws InterruptedException {
-
+    public void enterUsername(String name) {
         driver.findElement(username).sendKeys(name);
     }
 
@@ -34,7 +31,7 @@ public class loginPage extends  BaseClass {
     }
 
     public void clickLoginButton() {
-        driver.findElement(loginButton).click();
+
     }
 
 }

@@ -17,10 +17,9 @@ public class loginStep {
     loginPage loginPage = new loginPage(driver);
 
 
-    @Given("I am on the login page")
-    public void i_am_on_the_login_page() {
+    @Given("I am on ebay website")
+    public void i_am_on_ebay_website() {
         driver.get("https://www.ebay.com/");
-
     }
 
 

@@ -2,7 +2,7 @@ Feature: login Feature Demo
 
   @test
     Scenario: Login with valid credentials
-      Given I am on the login page
+      Given I am on ebay website
    #   When I enter my username and password
 
 
