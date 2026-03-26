@@ -10,7 +10,7 @@ import org.testng.annotations.DataProvider;
         glue = {"Stepdefinition", "Hook"},
         plugin = {"pretty", "html:target/cucumber-reports", "json:target/cucumber.json"},
         monochrome = true,
-        tags = "@login",
+        tags = "@test",
         publish = true
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
